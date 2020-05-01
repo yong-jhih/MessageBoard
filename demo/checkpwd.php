@@ -15,14 +15,11 @@
         $data = mysqli_query($db,$qstr);
         if($data->num_rows!=0){
             $m= mysqli_fetch_assoc($data);
-            
             $_SESSION['permission']=$m['permission'];
             $_SESSION['memberName']=$m['memberName'];
             $_SESSION['memberID']=$m['memberID'];
             $_SESSION['memberPWL']=$memberPWL;
             $_SESSION['passed']=true;
-            setcookie('passed',true);
-            setcookie('memberName',$m['memberName']);
             $smarty->assign("permission",$m['permission']);
             $smarty->display('checkpwd.tpl');
         }else{

@@ -142,13 +142,13 @@
             {/foreach}
         </div>
         {* 跳頁 *}
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
             <ul class="pagination">
-                {foreach item=page from=$pages}
+                {*foreach item=page from=$pages*}
                     <li class="page-item"><a class="page-link" href="?page={$page}">{$page}</a></li>
-                {/foreach}                  
+                {*/foreach*}                  
             </ul>
-        <nav>
+        <nav> -->
     </div>
 
     {* 主留言區ok *}
@@ -156,25 +156,25 @@
         <table style="width:100%;margin:auto">
             <tr style="background-color:#0084CA;text-align:center">
                 <td colspan="2">
-                    <h5 style="color:#FFFFFF" id="enter">請在此輸入新的留言</h5>
+                    <h5 style="color:#FFFFFF" id="enter">{if $passed==true}請在此輸入新的留言{else}請登入後留言{/if}</h5>
                 </td>
             </tr>
-            <tr style="background-color:#D9F2FF;text-align:center">
-                <td width="10%">發文者</td>
-                    <td width='85%'><input class="form-control" id='author' name='author' readonly type='text' size='50'></td>
-            </tr>
-            <form name="myForm" method="post" action="post.php" enctype="multipart/form-data">
+            <form name="myForm" method="POST" action="post.php" enctype="multipart/form-data">
+                <tr style="background-color:#D9F2FF;text-align:center">
+                    <td width="10%">發文者</td>
+                        <td width='85%'><input class="form-control" id='author' name='author' readonly type='text' size='50' {if $passed!=true}disabled{/if} value="{if $passed==true}{$memberName}{/if}"></td>
+                </tr>
                 <tr style="background-color:#84D7FF;text-align:center">
                     <td width="10%">主題</td>
-                    <td width="85%"><input class="form-control" id='subject' name="subject" type="text" size="50"></td>
+                    <td width="85%"><input class="form-control" id='subject' name="subject" type="text" size="50" {if $passed!=true}disabled{/if}></td>
                 </tr>
                 <tr style="background-color:#D9F2FF;text-align:center">
                     <td width="10%">內容</td>
-                    <td width="85%"><textarea class="form-control" id='content' name="content" cols="50" rows="5"></textarea></td>
+                    <td width="85%"><textarea class="form-control" id='content' name="content" cols="50" rows="5" {if $passed!=true}disabled{/if}></textarea></td>
                 </tr>
                 <tr style="background-color:#84D7FF;">
                     <td width="10%">上傳圖片</td>
-                    <td width="85%"><input id='img' name="img" type="file" accept=".image,.jpg,.jpeg,.png,.gif"></td>
+                    <td width="85%"><input id='img' name="img" type="file" accept=".image,.jpg,.jpeg,.png,.gif" {if $passed!=true}disabled{/if}></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="text-align:center;padding:10px">
@@ -187,27 +187,10 @@
     </div>
     
     <script type="text/javascript">
-        let passed ;
-        let cookie = document.cookie.split(" ") ;
-        if(cookie.length>1){
-            passed = true ;
-            var memberName = cookie[1].split("=")[1].replace("+"," ");
-            document.getElementById('author').value = memberName.substring(0,memberName.length-1) ;
-        }else{
-            passed = false ;
-        }
-        function checkMember() {
-            document.getElementById('author').disabled = !passed;
-            document.getElementById('subject').disabled = !passed;
-            document.getElementById('content').disabled = !passed;
-            document.getElementById('enter').innerHTML = passed ? "請在此輸入新的留言" : "如要留言請先登入會員";
-        }checkMember();
         function checkForm() {
-            if (document.myForm.author.value.length == 0) {
-                alert("請留名字");
-            } else if (document.myForm.subject.value.length == 0) {
+            if (document.getElementById('subject').value == '') {
                 alert("請給主題");
-            } else if (document.myForm.content.value.length == 0) {
+            } else if (document.getElementById('content').value == '') {
                 alert("請給內容");
             } else {
                 myForm.submit();

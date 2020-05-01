@@ -40,11 +40,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="chat.php" tabindex="-1">
-              <?php
+              <!-- <?php
                 if (isset($_SESSION['passed'])) {
                   echo "聊天室" ;
                 }
-              ?>
+              ?> -->
             </a>
           </li>
           <li class="nav-item">
@@ -52,8 +52,8 @@
               <?php
                 if (isset($_SESSION['passed'])) {
                   echo $_SESSION['memberName'] . " 歡迎回來~";
-                  if($_SERVER['PHP_SELF']=='/coding/guestbook/demo/LittleMary.php'){
-                    echo '您有'.$GameCoin.'代幣' ;
+                  if($_SERVER['PHP_SELF']=='/coding/MessageBoard/demo/LittleMary.php'){
+                    echo '您有'.'-----'.'代幣' ;
                   }
                 }
               ?>

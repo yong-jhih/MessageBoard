@@ -29,7 +29,7 @@
         $data = mysqli_query($db,$qstr);
         $r=array();
         $j=0;
-        while ($n<$data->num_rows){
+        while ($j<$data->num_rows){
             $r[$j]= mysqli_fetch_assoc($data);
             $j++;
         }
@@ -60,6 +60,7 @@
 
     require_once 'smarty_ini.php';
     $smarty->assign("passed",$_SESSION['passed']);
+    $smarty->assign("memberName",$memberName);
     $smarty->assign("post_array",$m);
     $smarty->assign("reply_array",$r);
     $smarty->display('index.tpl');
