@@ -7,7 +7,7 @@
 
     if(isset($_SESSION['passed'])){
         if($content == $_POST['content'] && $contentID == $_POST['contentID']){
-            $db=mysqli_connect('localhost','root','','guestbook');
+            $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','pt124362575','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
             $qstr = "UPDATE message SET content='$content' WHERE postID='$contentID'";
             $data = mysqli_query($db,$qstr);
             if($_SESSION['permission']==0){

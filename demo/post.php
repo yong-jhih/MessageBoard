@@ -13,7 +13,7 @@
 
   if(isset($_SESSION['passed']) && $subject!='' && $content!=''){
     if($subject == $_POST["subject"] && $content == $_POST["content"]){
-      $db=mysqli_connect('localhost','root','','guestbook');
+      $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','pt124362575','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
       if($_FILES['img']['error'] > 0){
         $qstr = "INSERT INTO message(author,subject, content, date, memberID ) VALUES('$memberName','$subject', '$content', '$current_time', '$memberID' )";
         $data = mysqli_query($db,$qstr);

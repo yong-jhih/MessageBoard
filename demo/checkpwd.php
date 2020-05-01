@@ -10,7 +10,7 @@
 
     // 比對過濾前後資料
     if($memberAC == $_POST['memberAC']){
-        $db=mysqli_connect('localhost','root','','guestbook');
+        $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','pt124362575','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
         $qstr = "SELECT * from member WHERE memberAC='$memberAC' AND memberPW='$memberPW'";
         $data = mysqli_query($db,$qstr);
         if($data->num_rows!=0){

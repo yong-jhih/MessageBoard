@@ -2,7 +2,7 @@
   include_once 'statusBar.php';
   ini_set('display_errors','on');
   $memberID = $_SESSION['memberID'];
-  $db=mysqli_connect('localhost','root','','guestbook');
+  $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','pt124362575','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
 
   $oldPath=$_POST['oldPath'];
   $current_timel = date("YmdHis");

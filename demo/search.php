@@ -6,7 +6,7 @@
     $keywords = test_input($_POST['keywords']);
     $searchType = test_input($_POST['searchType']);
     if($keywords == $_POST['keywords'] && $keywords != ""){
-        $db=mysqli_connect('localhost','root','','guestbook');
+        $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','pt124362575','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
         switch($searchType){
             case "subject":
                 $qstr = "SELECT a.* , b.memberName FROM message AS a , member AS b WHERE a.memberID=b.memberID AND subject LIKE '%$keywords%' ORDER BY postID";
