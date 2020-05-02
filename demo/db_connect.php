@@ -1,6 +1,6 @@
 <?php
   function create_connection(){
-    $link = mysqli_connect("localhost", "root", "") or die("無法建立資料連接: " . mysqli_connect_error());
+    $link = mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4') or die("無法建立資料連接: " . mysqli_connect_error());
     mysqli_query($link, "SET NAMES utf8");
     return $link;
   }

@@ -6,7 +6,8 @@
 
         // 查詢會員資料
         $memberID= $_SESSION['memberID'];
-        $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','pt124362575','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
+        $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
+        mysqli_query($db, "SET NAMES utf8");
         $qstr = "SELECT * FROM member WHERE memberID='$memberID'";
         $data = mysqli_query($db,$qstr);
         $r = mysqli_fetch_assoc($data);
