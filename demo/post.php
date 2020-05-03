@@ -1,6 +1,7 @@
 <?php
   include_once 'statusBar.php';
-  ini_set('display_errors','off'); 
+  require_once('db_config.php');
+  require_once('function.php');
   
   $subject = test_input($_POST["subject"]);
   $content = test_input($_POST["content"]);
@@ -13,16 +14,15 @@
 
   if(isset($_SESSION['passed']) && $subject!='' && $content!=''){
     if($subject == $_POST["subject"] && $content == $_POST["content"]){
-      $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-      mysqli_query($db, "SET NAMES utf8");
+      $db=create_connection($dbhost,$user,$password,$database);
       if($_FILES['img']['error'] > 0){
         $qstr = "INSERT INTO message(author,subject, content, date, memberID ) VALUES('$memberName','$subject', '$content', '$current_time', '$memberID' )";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         header("location:index.php");
       }else{
         move_uploaded_file($_FILES["img"]["tmp_name"], $filePath);
         $qstr = "INSERT INTO message(author,subject,content,date,memberID,img) VALUES('$memberName','$subject', '$content', '$current_time', '$memberID' , '$filePath' )";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         header("location:index.php");
       }
     }

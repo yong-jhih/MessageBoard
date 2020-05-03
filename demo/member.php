@@ -2,19 +2,19 @@
     if($_SESSION['passed']){
         include_once 'statusBar.php';
         require_once 'smarty_ini.php';
-        ini_set('display_errors','off');
+        require_once('db_config.php');
+        require_once('function.php');
 
         // 查詢會員資料
         $memberID= $_SESSION['memberID'];
-        $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-        mysqli_query($db, "SET NAMES utf8");
+        $db=create_connection($dbhost,$user,$password,$database);
         $qstr = "SELECT * FROM member WHERE memberID='$memberID'";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         $r = mysqli_fetch_assoc($data);
 
         // 會員文章查詢
         $qstr = "SELECT a.* , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND a.memberID = '$memberID' ORDER BY postID";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         $p = array();
         $j = 0 ;
         if($data->num_rows!=0){

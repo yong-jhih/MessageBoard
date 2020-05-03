@@ -1,6 +1,7 @@
 <?php
   include_once 'statusBar.php';
-  ini_set('display_errors','off');
+  require_once('db_config.php');
+  require_once('function.php');
   
   $content = test_input($_POST["reply"]);
   $current_time = date("Y-m-d H:i:s");
@@ -11,10 +12,9 @@
 
   if(isset($_SESSION['passed'])){
     if($content == $_POST["reply"] && $subID == $_POST["subID"]){
-      $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-      mysqli_query($db, "SET NAMES utf8");
+      $db=create_connection($dbhost,$user,$password,$database);
       $qstr = "INSERT INTO message(subID , content, date, memberID , type , subject) VALUES('$subID','$content', '$current_time', '$memberID' , '2' , '$subject')";
-      $data = mysqli_query($db,$qstr);
+      $data = execute_db($db, $database, $qstr);
       header("location:index.php");
     }
   }else{

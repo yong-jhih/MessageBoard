@@ -1,11 +1,12 @@
 <?php
-    ini_set('display_errors','off');
+
+    require_once('db_config.php');
+    require_once('function.php');
 
     $testAC=$_POST['newAC'];
-    $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-    mysqli_query($db, "SET NAMES utf8");
+    $db=create_connection($dbhost,$user,$password,$database);
     $qstr = "SELECT memberAC from member WHERE memberAC='$testAC'";
-    $data = mysqli_query($db,$qstr);
+    $data = execute_db($db, $database, $qstr);
 
     if($data->num_rows!=0){
         header('Content-Type: application/json; charset=utf-8');

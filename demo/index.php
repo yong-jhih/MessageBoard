@@ -1,8 +1,9 @@
 <?php
     include_once 'statusBar.php';
-    ini_set('display_errors','off'); 
-    $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-    mysqli_query($db, "SET NAMES utf8");
+    require_once('db_config.php');
+    require_once('function.php');
+
+    $db=create_connection($dbhost,$user,$password,$database);
     $memberName=$_SESSION['memberName'];
     $now_time = date("Y-m-d H:i:s");
     
@@ -16,7 +17,7 @@
         
         // 主文查詢
         $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b WHERE a.memberID = b.memberID AND type='1' ORDER BY postID DESC";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         $m = array();
         $i = 0 ;
         while ($i<$data->num_rows){
@@ -26,7 +27,7 @@
 
         //回覆查詢
         $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND type='2' ORDER BY postID";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         $r=array();
         $j=0;
         while ($j<$data->num_rows){
@@ -38,7 +39,7 @@
 
         // 主文查詢
         $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND type='1' AND postID='$search' ORDER BY postID DESC";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         $m = array();
         $i = 0 ;
         while ($i<$data->num_rows){
@@ -48,7 +49,7 @@
 
         //回覆查詢
         $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND type='2' ORDER BY postID";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         $r=array();
         $j=0;
         while ($n<$data->num_rows){
