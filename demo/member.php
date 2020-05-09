@@ -1,10 +1,12 @@
 <?php
+    session_start();
     if($_SESSION['passed']){
-        include_once 'statusBar.php';
-        require_once 'smarty_ini.php';
+
         require_once('db_config.php');
         require_once('function.php');
-
+        include_once 'statusBar.php';
+        require_once 'smarty_ini.php';
+        echo '123';
         // 查詢會員資料
         $memberID= $_SESSION['memberID'];
         $db=create_connection($dbhost,$user,$password,$database);
@@ -47,7 +49,7 @@
         include_once 'footer.php';
 
     }else{
-        header("location:index.php");
+        // header("location:index.php");
         exit();
     }
 ?>

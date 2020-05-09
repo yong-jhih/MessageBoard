@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if($_SESSION['passed']){
         include_once 'statusBar.php';
         require_once 'db_config.php';

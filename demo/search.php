@@ -1,4 +1,5 @@
-<?php 
+<?php
+    session_start();
     include_once 'statusBar.php';
     require_once 'smarty_ini.php';
     require_once('db_config.php');

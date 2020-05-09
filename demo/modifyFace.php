@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include_once 'statusBar.php';
   ini_set('display_errors','on');
   $memberID = $_SESSION['memberID'];

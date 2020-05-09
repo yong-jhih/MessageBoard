@@ -6,6 +6,7 @@
     $data = htmlspecialchars($data);  //把特殊字元轉換為 HTML 實體
     return $data;
   }
+  var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,10 +72,11 @@
         if (isset($_SESSION['passed'])) {
           echo "<div style='text-align:right;margin-right:5px'>";
           echo "<button class='btn btn-outline-primary' onclick='logOut()' style='margin-right:5px'>" . "登出</button>";
+          echo "<button class='btn btn-outline-primary' onclick='redirectMember(";
           if($_SESSION['permission']==0){
-            echo "<button class='btn btn-outline-primary' onclick='redirectMember()'>管理中心</button>";
+            echo '"manager.php"'.")'>管理中心</button>";
           }else{
-            echo "<button class='btn btn-outline-primary' onclick='redirectMember()'>會員中心</button>";
+            echo '"member.php"'.")'>會員中心</button>";
           }
           echo "</div>";
         } else {
@@ -87,20 +89,16 @@
       </div>
     </div>
   </nav>
-
   <script>
-    function redirectRegister() {
+    function redirectRegister(){
       window.location = "register.php";
     }
-    <?php
-      if(isset($_SESSION['permission'])){
-        if ($_SESSION['permission'] == 0)
-          echo 'function redirectMember(){window.location = "manager.php";}';
-        elseif($_SESSION['permission'] == 1)
-          echo 'function redirectMember(){window.location = "member.php";}';
-      } 
-    ?>
-    function logOut() {
+
+    function redirectMember(goal){
+      window.location = goal ;
+    }
+
+    function logOut(){
       window.location = "logout.php";
     }
   </script>
