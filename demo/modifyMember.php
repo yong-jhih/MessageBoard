@@ -1,7 +1,7 @@
 <?php
-    session_start();
     include_once 'statusBar.php';
-    ini_set('display_errors','off');
+    require_once 'db_config.php';
+    require_once 'function.php';
 
     $memberAC = test_input($_POST['memberAC']);
     $memberID= $_SESSION['memberID'];
@@ -12,10 +12,9 @@
 
     if(isset($_SESSION['passed'])){
         if($memberName == $_POST['memberName'] && $memberMail == $_POST['memberMail']){
-            $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-            mysqli_query($db, "SET NAMES utf8");
+            $db=create_connection($dbhost,$user,$password,$database);
             $qstr = "UPDATE member SET memberPW='$memberPW',memberName='$memberName',email='$memberMail' WHERE memberID='$memberID'";
-            $data = mysqli_query($db,$qstr);
+            $data = execute_db($db, $database, $qstr);
             setcookie('memberName',$memberName);
             $_SESSION['memberName']=$memberName;
             header("location:member.php");
@@ -24,4 +23,3 @@
         header("location:index.php");
     }
 ?>
-

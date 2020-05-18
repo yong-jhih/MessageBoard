@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include_once 'statusBar.php';
     require_once('db_config.php');
     require_once('function.php');

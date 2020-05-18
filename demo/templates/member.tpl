@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>會員中心</title>
+    <title>{if $permission=='1'}會員中心{elseif $permission=='0'}管理中心{/if}</title>
     <script src="js/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="../bootstrap-4.4.1-dist\css\bootstrap.css">
     <script src="../bootstrap-4.4.1-dist\js\bootstrap.js"></script>
@@ -78,10 +78,11 @@
 
         {* 文章列表ok *}
         <div class="col-md-9" style="position:relative;display:inline-block;margin-top:20px">
-            <h4>我的留言</h4>
+            <h4>{if $permission=='1'}我的留言{elseif $permission=='0'}所有留言列表{/if}</h4>
             <table class="table">
                 <thead>
                     <tr>
+                        {if $permission=='0'}<th scope="col">發文者</th>{/if}
                         <th scope="col">主題</th>
                         <th scope="col">時間</th>
                         <th scope="col" class='content' style="overflow:hidden">內容</th>
@@ -91,6 +92,7 @@
                 <tbody>
                     {foreach item=post from=$post_array}
                     <tr>
+                        {if $permission=='0'}<th scope="row">{$post.memberName}</th>{/if}
                         <th scope="row">{$post.subject}</th>
                         <td>{$post.date}</td>
                         <td class='content' style="overflow:hidden">

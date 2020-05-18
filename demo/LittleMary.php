@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include_once 'statusBar.php';
     require_once('db_config.php');
     require_once('function.php');
 
@@ -9,7 +9,6 @@
     $data = execute_db($db, $database, $qstr);
     $l = mysqli_fetch_assoc($data);
     $GameCoin = $l['GameCoin'];
-    include_once 'statusBar.php';
 ?>
 
 <!DOCTYPE html>

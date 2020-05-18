@@ -6,7 +6,6 @@
     $data = htmlspecialchars($data);  //把特殊字元轉換為 HTML 實體
     return $data;
   }
-  var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,9 +73,9 @@
           echo "<button class='btn btn-outline-primary' onclick='logOut()' style='margin-right:5px'>" . "登出</button>";
           echo "<button class='btn btn-outline-primary' onclick='redirectMember(";
           if($_SESSION['permission']==0){
-            echo '"manager.php"'.")'>管理中心</button>";
+            echo ")'>管理中心</button>";
           }else{
-            echo '"member.php"'.")'>會員中心</button>";
+            echo ")'>會員中心</button>";
           }
           echo "</div>";
         } else {
@@ -94,8 +93,8 @@
       window.location = "register.php";
     }
 
-    function redirectMember(goal){
-      window.location = goal ;
+    function redirectMember(){
+      window.location = 'member.php' ;
     }
 
     function logOut(){

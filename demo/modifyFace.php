@@ -1,11 +1,9 @@
 <?php
-  session_start();
   include_once 'statusBar.php';
-  ini_set('display_errors','on');
+  require_once 'db_config.php';
+  require_once 'function.php';
+  
   $memberID = $_SESSION['memberID'];
-  $db=mysqli_connect('localhost','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4','jQLpbv<]j3TROg4q','id13248042_wp_3f2c7207ac659fe00f10525d8d80fde4');
-  mysqli_query($db, "SET NAMES utf8");
-
   $oldPath=$_POST['oldPath'];
   $current_timel = date("YmdHis");
   $fileName = $memberID . $current_timel . $_FILES["Face"]["name"];
@@ -13,13 +11,15 @@
   $way=$_POST['way'];
 
   if(isset($_SESSION['passed'])){
+    $db=create_connection($dbhost,$user,$password,$database);
+
     // 只刪除原圖及路徑
     if($way=='delete'){
       if(is_file($oldPath)){
         unlink($oldPath);
       }
       $qstr = "UPDATE member SET Face=NULL WHERE memberID='$memberID'";
-      mysqli_query($db,$qstr);
+      $data = execute_db($db, $database, $qstr);
 
     // 更換圖片
     }elseif($way=='change'){
@@ -29,15 +29,11 @@
 
       if($_FILES['Face']['error'] == 0){
         $qstr = "UPDATE member SET Face='$filePath' WHERE memberID='$memberID'";
-        $data = mysqli_query($db,$qstr);
+        $data = execute_db($db, $database, $qstr);
         move_uploaded_file($_FILES["Face"]["tmp_name"], $filePath);
       }
     }
-    if($_SESSION['permission']==0){
-      header("location:manager.php");
-    }else{
-      header("location:member.php");
-    }
+    header("location:member.php");
   }else{
     header("location:index.php");
   }
