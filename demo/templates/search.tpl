@@ -73,15 +73,16 @@
                         {foreach item=post from=$post_array}
                         <tr>
                         <form action="index.php" method="POST">
-                            <input type="text" name="postID" value="{$post.postID}" hidden>
-                            <input type="text" name="subID" value="{$post.subID}" hidden>
-                            <input type="text" name="type" value="{$post.type}" hidden>
+                            <input type="hidden" name="action" value="search">
+                            <input type="hidden" name="postID" value="{$post.postID}">
+                            <input type="hidden" name="subID" value="{$post.subID}">
+                            <input type="hidden" name="type" value="{$post.type}">
                             <td><button type="submit" class="btn btn-outline-success my-2 my-sm-0">前往</button></td>
+                        </form>
                             <td>{$post.memberName}</td>
                             <td>{$post.subject}</td>
                             <td>{$post.date}</td>
                             <td class='content text-break' style="overflow:hidden">{$post.content}</td>
-                        </form>
                         </tr>
                         {/foreach}
                     </tbody>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-05-10 04:51:16
+/* Smarty version 3.1.34-dev-7, created on 2020-06-10 05:31:33
   from 'C:\xampp\htdocs\coding\MessageBoard\demo\templates\search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5eb76c2497ab84_19229082',
+  'unifunc' => 'content_5ee054156678d0_84387383',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '719f5d4d988ae3d7a1d1a53acc19033bcbf2d17b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\coding\\MessageBoard\\demo\\templates\\search.tpl',
-      1 => 1581133379,
+      1 => 1591759804,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5eb76c2497ab84_19229082 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ee054156678d0_84387383 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,13 +105,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 ?>
                         <tr>
                         <form action="index.php" method="POST">
-                            <input type="text" name="postID" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['postID'];?>
-" hidden>
-                            <input type="text" name="subID" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['subID'];?>
-" hidden>
-                            <input type="text" name="type" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['type'];?>
-" hidden>
+                            <input type="hidden" name="action" value="search">
+                            <input type="hidden" name="postID" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['postID'];?>
+">
+                            <input type="hidden" name="subID" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['subID'];?>
+">
+                            <input type="hidden" name="type" value="<?php echo $_smarty_tpl->tpl_vars['post']->value['type'];?>
+">
                             <td><button type="submit" class="btn btn-outline-success my-2 my-sm-0">前往</button></td>
+                        </form>
                             <td><?php echo $_smarty_tpl->tpl_vars['post']->value['memberName'];?>
 </td>
                             <td><?php echo $_smarty_tpl->tpl_vars['post']->value['subject'];?>
@@ -120,7 +122,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 </td>
                             <td class='content text-break' style="overflow:hidden"><?php echo $_smarty_tpl->tpl_vars['post']->value['content'];?>
 </td>
-                        </form>
                         </tr>
                         <?php
 }

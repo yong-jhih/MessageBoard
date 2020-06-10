@@ -38,15 +38,15 @@
               ?>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="chat.php" tabindex="-1">
-              <!-- <?php
+              <?php
                 if (isset($_SESSION['passed'])) {
                   echo "聊天室" ;
                 }
-              ?> -->
+              ?>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
               <?php
@@ -61,9 +61,9 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="POST" action="search.php">
-          <input type="radio" value="subject" name="searchType" style='margin:5px' required>主題
-          <input type="radio" value="content" name="searchType" style='margin:5px' required>內容
-          <input type="radio" value="author" name="searchType" style='margin:5px' required>作者
+          <label><input type="radio" value="subject" name="searchType" style='margin:5px' required>主題</label>
+          <label><input type="radio" value="content" name="searchType" style='margin:5px' required>內容</label>
+          <label><input type="radio" value="author" name="searchType" style='margin:5px' required>作者</label>
           <input style='margin:5px' class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keywords" required>
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style='margin-right:5px'>搜尋</button>
         </form>

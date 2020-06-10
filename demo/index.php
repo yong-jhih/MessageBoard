@@ -13,50 +13,47 @@
         $search = $_POST['subID'];
     }
 
-    if(!isset($search)){ // 非查詢(全部貼文)
+    $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b WHERE a.memberID = b.memberID ";
+    $m = array();
+    $r=array();
+    $i = 0 ;
+    $j=0;
+    
+    if($_POST['action']!='search'){ // 非查詢(全部貼文)
         
         // 主文查詢
-        $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b WHERE a.memberID = b.memberID AND type='1' ORDER BY postID DESC";
-        $data = execute_db($db, $database, $qstr);
-        $m = array();
-        $i = 0 ;
+        $qstrm = $qstr."AND type='1' ORDER BY postID DESC";
+        $data = execute_db($db, $database, $qstrm);
         while ($i<$data->num_rows){
             $m[$i]= mysqli_fetch_assoc($data);
             $i++;
         }
 
         //回覆查詢
-        $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND type='2' ORDER BY postID";
-        $data = execute_db($db, $database, $qstr);
-        $r=array();
-        $j=0;
+        $qstrr = $qstr."AND type='2' ORDER BY postID";
+        $data = execute_db($db, $database, $qstrr);
         while ($j<$data->num_rows){
             $r[$j]= mysqli_fetch_assoc($data);
             $j++;
         }
 
-    }else{ // 查詢(目標貼文)
+    }elseif($_POST['action']=='search'){ // 查詢(目標貼文)
 
         // 主文查詢
-        $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND type='1' AND postID='$search' ORDER BY postID DESC";
-        $data = execute_db($db, $database, $qstr);
-        $m = array();
-        $i = 0 ;
+        $qstrm = "AND type='1' AND postID='$search' ORDER BY postID DESC";
+        $data = execute_db($db, $database, $qstrm);
         while ($i<$data->num_rows){
             $m[$i]= mysqli_fetch_assoc($data);
             $i++;
         }
 
         //回覆查詢
-        $qstr = "SELECT a.* , b.Face , b.memberName FROM message as a , member as b where a.memberID = b.memberID AND type='2' ORDER BY postID";
-        $data = execute_db($db, $database, $qstr);
-        $r=array();
-        $j=0;
+        $qstrr = $qstr."AND type='2' ORDER BY postID";
+        $data = execute_db($db, $database, $qstrr);
         while ($n<$data->num_rows){
             $r[$j]= mysqli_fetch_assoc($data);
             $j++;
         }
-        
     }
 
     require_once 'smarty_ini.php';

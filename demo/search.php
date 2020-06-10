@@ -8,15 +8,16 @@
     $searchType = test_input($_POST['searchType']);
     if($keywords == $_POST['keywords'] && $keywords != ""){
         $db=create_connection($dbhost,$user,$password,$database);
+        $qstr = "SELECT a.* , b.memberName FROM message AS a , member AS b WHERE a.memberID=b.memberID AND ";
         switch($searchType){
             case "subject":
-                $qstr = "SELECT a.* , b.memberName FROM message AS a , member AS b WHERE a.memberID=b.memberID AND subject LIKE '%$keywords%' ORDER BY postID";
+                $qstr .= "subject LIKE '%$keywords%' ORDER BY postID";
                 break;
             case "content":
-                $qstr = "SELECT a.* , b.memberName FROM message AS a , member AS b WHERE a.memberID=b.memberID AND content LIKE '%$keywords%' ORDER BY postID";
+                $qstr .= "content LIKE '%$keywords%' ORDER BY postID";
                 break;
             case "author":
-                $qstr = "SELECT a.* , b.memberName FROM message AS a , member AS b WHERE a.memberID=b.memberID AND memberName LIKE '%$keywords%' ORDER BY postID";
+                $qstr .= "memberName LIKE '%$keywords%' ORDER BY postID";
                 break;
             default;
         }
@@ -29,6 +30,7 @@
         }
     }
     
+    $smarty->assign("records",$data->num_rows);
     $smarty->assign("post_array",$r);
     $smarty->display('search.tpl');
     include_once 'footer.php';
