@@ -15,10 +15,8 @@
       $db=create_connection($dbhost,$user,$password,$database);
       $qstr = "INSERT INTO message(subID , content, date, memberID , type , subject) VALUES('$subID','$content', '$current_time', '$memberID' , '2' , '$subject')";
       $data = execute_db($db, $database, $qstr);
-      header("location:index.php");
     }
-  }else{
-    header("location:index.php");
   }
+  header("location:index.php");
   
 ?>

@@ -11,12 +11,8 @@
             $db=create_connection($dbhost,$user,$password,$database);
             $qstr = "UPDATE message SET content='$content' WHERE postID='$contentID'";
             $data = execute_db($db, $database, $qstr);
-            if($_SESSION['permission']==0){
-                header("location:manager.php");
-            }else{
-                header("location:member.php");
-            }
         }
+        header("location:member.php");
     }else{
         header("location:index.php");
     }

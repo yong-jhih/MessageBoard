@@ -3,8 +3,7 @@
     $dbhost = 'localhost';
     $user = 'root';
     $password = '';
-    $database = 'guestbook';
-
+    $database = 'project';
     ini_set('display_errors','off');
     
 ?>

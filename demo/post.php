@@ -18,16 +18,13 @@
       if($_FILES['img']['error'] > 0){
         $qstr = "INSERT INTO message(author,subject, content, date, memberID ) VALUES('$memberName','$subject', '$content', '$current_time', '$memberID' )";
         $data = execute_db($db, $database, $qstr);
-        header("location:index.php");
       }else{
         move_uploaded_file($_FILES["img"]["tmp_name"], $filePath);
         $qstr = "INSERT INTO message(author,subject,content,date,memberID,img) VALUES('$memberName','$subject', '$content', '$current_time', '$memberID' , '$filePath' )";
         $data = execute_db($db, $database, $qstr);
-        header("location:index.php");
       }
     }
-  }else{
-    header("location:index.php");
   }
+  header("location:index.php");
   
 ?>

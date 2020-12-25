@@ -38,15 +38,6 @@
               ?>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="chat.php" tabindex="-1">
-              <?php
-                if (isset($_SESSION['passed'])) {
-                  echo "聊天室" ;
-                }
-              ?>
-            </a>
-          </li> -->
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
               <?php
